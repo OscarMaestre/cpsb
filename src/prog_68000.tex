@@ -53,7 +53,7 @@ The last piece of the \icode{\_boot} function sets up auto-vector mode and jump 
 \section{Memory Map}
 Like for the Sound System and its z80 memory space, we need to make sure the software behaves according to the memory map defined by the board PALs.
 
-The compiler in the GNU Compiler Collection, \icode{gcc} does not have a placement keyword \icode{\_at} but even if it had been available, it would not have been enough to map large portions such as the 192 KiB of GFXRAM.
+The compiler in the GNU Compiler Collection, \icode{gcc} does not have a placement keyword \icode{\_\_at} but even if it had been available, it would not have been enough to map large portions such as the 192 KiB of GFXRAM.
 
 We can compensate for the lack of \icode{\_\_at} thanks to the power of \icode{ld}'s linker script system. The idea is to use a two step method:
 \begin{enumerate}
@@ -209,7 +209,7 @@ Arcade operators could configure the difficulty of a game via DIP switches. In S
 The three DIP switches are called A, B, and C. As visible on page \pageref{fig:boarda} each DIP has 8 switches responsible for flipping a bit in a byte. Recovering the configuration is as simple as reading a byte from the memory map.
 
 \begin{trivia}
-In Street Fighter 2, DIP B is used to configure the difficulty level of the game ranging from 0 to 8 (4=default). Based on this value the A.I selects appropriate sets of bytecode\cite{sf2aiengine} script. Even in easy mode, the A.I cheats by skipping "charging"\cite{sf2aiengine}.
+In Street Fighter 2, DIP B is used to configure the difficulty level of the game ranging from 0 to 8 (4=default). Based on this value the AI selects appropriate sets of bytecode\cite{sf2aiengine} script. Even in easy mode, the AI cheats by skipping "charging"\cite{sf2aiengine}.
 \end{trivia}
 
 
@@ -436,7 +436,7 @@ Developers do not have to worry about the \icode{STF29} or GFX partitioning. The
 
 \subsubsection{Drawing SCROLLs}
 
-Rendering tilemap is much alike rendering OBJs. Descriptors must be written to the GFX RAM but the layout is much simpler. Each entry is two 16-bit WORDs wide (four bytes).
+Rendering tilemap is much like rendering OBJs. Descriptors must be written to the GFX RAM but the layout is much simpler. Each entry is two 16-bit WORDs wide (four bytes).
 
 \lstinputlisting[style=CStyle]{src/code/68000/scrolls.c} 
 
@@ -645,7 +645,7 @@ In total, if all four planes are used in their most complex form, up to eleven l
 
 An even more impressive feat from the CRT compositor is that all layers of each plane are independently hardware scrollable.
 
-The numerous plane capabilities made the X68000 a versatile instrument able to excel at at wide range of tasks, from simple text editing to demanding raytracing. 
+The numerous plane capabilities made the X68000 a versatile instrument able to excel at a wide range of tasks, from simple text editing to demanding raytracing. 
 
 Video games were obviously a strength of the machine thanks to its Background and Sprite layers although, as we will see, developers did not employ resources as one would expect.
 
@@ -710,13 +710,13 @@ A definitive answer about the viability of the X68000 as a development station c
 \caption*{X68000 Ports of CPS-1 games by Capcom}
 \end{figure}
 
-An analysis methodology shared by Upsilandre\cite{x68k_games_analysis}, leveraging XM6 Pro-68k emulator, shows that the GFX rendering architecture of these titles exhibits no pattern of an emulation layer. On the contrary, the GFX renderers are tailor made and rely heavily on CPU tricks. 
+An analysis methodology shared by Upsilandre\cite{x68k_games_analysis}, leveraging XM6 Pro-68k emulator, shows that the GFX rendering architecture of these titles exhibits no pattern of an emulation layer. On the contrary, the GFX renderers are tailor-made and rely heavily on CPU tricks. 
 
 \begin{trivia}
 The stress on the 68000 is confirmed by Ghouls 'n Ghosts manual which recommends a 16MHz CPU and warns about slowdown on a 10MHz 68000.
 \end{trivia}
 
-All thes clues strongly suggest the SHARP X68000 was limited to writing/testing assembly, running TCE, and allocating/compiling the GFXROM for CPS-2 games.
+All these clues strongly suggest the SHARP X68000 was limited to writing/testing assembly, running TCE, and allocating/compiling the GFXROM for CPS-2 games.
 
 \nbimg{gg_manual.jpg}
 

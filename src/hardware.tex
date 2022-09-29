@@ -1,6 +1,6 @@
 \chapter{Hardware}
 \index{CP-System!CPS-1}
-The project that would later be dubbed by the press "superchip"\cite{tgm198906} started between 1985 and 1986. It was a massive investment that would require two years and five million dollars\cite{becareful} (the equivalent of \$12 million dollars in 2022).
+The project that would later be dubbed by the press "superchip"\cite{tgm198906} started between 1985 and 1986. It was a massive investment that would require two years and five million dollars\cite{becareful} (the equivalent of \$12 million in 2022).
 
 The significant time and funds invested left no ambiguity in the mind of Capcom executives. This project would dictate the life or death of the company.
 
@@ -111,7 +111,7 @@ Since the three JAMMA buttons were used for punches, the extension was labeled t
 \end{figure}
 
 \pagebreak
-The connection points are prominent white connectors. Boards A and B are connected via four 2x32-pins connectors while the boards B and C are connected with four 2x20-pin connectors.  Once plugged into each others, the boards are manipulated as a whole with no floating parts.
+The connection points are prominent white connectors. Boards A and B are connected via four 2x32-pin connectors while the boards B and C are connected with four 2x20-pin connectors.  Once plugged into each other, the boards are manipulated as a whole with no floating parts.
 
 
 The system was revised over the years. Approximately 229 variations are known to exist, including bootlegs\cite{mame_cps1_video}. The board which will be studied in this book is the one used to run "Street Fighter 2": board A "88617A-7B", board B "90629B", and board C "90628-C".
@@ -179,7 +179,7 @@ To design an effective multi-CPUs system able to avoid both instruction and data
 Observant readers will have noticed unexplained black chips. For now we'll say they are in charge of bus traffic management. In the drawing above, \icode{STF29} handles the GFX ROM and \icode{IOB1} handles the m68k ROM. As an exercise, go back to page \pageref{fig:drawboarda} and guess which chip handles which ROM/RAM group. Or don't, I am just a book.
 
 \subsection{Board C}\index{Board!Board C}
-Board "C" hosts the "CPS-B" ASICs video chip. It is in charge of the remaining 50\% of the graphic pipeline, namely mix data from the VRAM and the GFX ROMs towards the pixel generator. Capcom also concentrated its anti-piracy measures in this chip and as a result revised board "C" many more times than board A and board B. 
+Board "C" hosts the "CPS-B" ASICs video chip. It is in charge of the remaining 50\% of the graphic pipeline, namely mixing data from the VRAM and the GFX ROMs towards the pixel generator. Capcom also concentrated its anti-piracy measures in this chip and as a result revised board "C" many more times than board A and board B. 
 
 This will be discussed extensively in the copy-protection section of this chapter.
 
@@ -217,7 +217,7 @@ There is strong isolation via layering where top systems are unable to access su
 
 The control system features a m68k in charge of coordinating inputs (joystick, buttons, coin) and outputs (video and audio). It can communicate with both the GFX and audio system main processors.
 
-The audio system runs almost totally in isolation. It is connected to control via two 8-bit latches which the z80 actively polls to retrieve commands related to music and sound effects. Notice how these latches bridge different data bus widths since control has 16 data lines while the audio system's uses 8 data lines.
+The audio system runs almost totally in isolation. It is connected to control via two 8-bit latches which the z80 actively polls to retrieve commands related to music and sound effects. Notice how these latches bridge different data bus widths since control has 16 data lines while the audio system uses 8 data lines.
 
 The graphic system needs more communications and exposes not only its CPS-A and CPS-B registers but also the GFX RAM where the screen layout is described. The m68k and the CPS-A use the same bus to access the GFX RAM, so the demarcation is not as clean as with the audio system. This results in a bit of bus contention.  
 \index{Colors!Pen}
@@ -238,11 +238,11 @@ The control system oversees the platform. As a ruler it needs not to excel at a 
 
 \subsection{Motorola 68000 CPU}\index{Processors!Motorola 68000}
 
- Released in 1979 and clocked at 10 MHz (later upgraded to 12 MHz), the 68000 with its two stage pipeline\cite{M68000fv} (prefetch, exec) and no internal cache was not a particularly powerful chip by late 80' standards . Its 1.7 MIPS placed it on par with an Intel 286 10MHz (1.5 MIPS). By 1989 it was already two generations old behind the 1984 M68020 (3 MIPS) and the 1987 M68030 (5 MIPS)\cite{mips}.
+ Released in 1979 and clocked at 10 MHz (later upgraded to 12 MHz), the 68000 with its two stage pipeline\cite{M68000fv} (prefetch, exec) and no internal cache was not a particularly powerful chip by late 80s standards. Its 1.7 MIPS placed it on par with an Intel 286 10MHz (1.5 MIPS). By 1989 it was already two generations old behind the 1984 M68020 (3 MIPS) and the 1987 M68030 (5 MIPS)\cite{mips}.
 
 \nbdraw{mips}
 
-However, this lack of velocity did not prevent a a plethora of manufacturers from using it as their backbone. On the list of machines adopting the m68k can be found the Atari ST, Amiga, Sega's System 16, Genesis, Sega CD, Apple Macintosh, Sharp X68000, and even SNK's Neo-Geo. It was even IBM's first choice for its PC before production issues allowed the Intel 8088 to prevail\cite{ieee20170630}. 
+However, this lack of speed did not prevent a a plethora of manufacturers from using it as their backbone. On the list of machines adopting the m68k can be found the Atari ST, Amiga, Sega's System 16, Genesis, Sega CD, Apple Macintosh, Sharp X68000, and even SNK's Neo-Geo. It was even IBM's first choice for its PC before production issues allowed the Intel 8088 to prevail\cite{ieee20170630}. 
 
 Performance is not what made the 68000 reign as the prime hardware design choice. The reason this CPU was so successful is because it was a great team player.
 
@@ -279,7 +279,7 @@ Finally, the processor status is given by \icode{FC0}, \icode{FC1}, \icode{FC2} 
 Motorola's CPU name is due to the total number of transistors totaling 68,000 units. The 68030 and 68040 had more transistors than their names indicate. 
 \end{trivia}
 
-Despite the raving description provided in the previous pages, the 68000 could be a peculiar CPU to program. Its most famous shortcoming involved memory alignment. While Intel's line of CISC allows random memory accesses (at the cost of a great performance penalty), Motorola's CPU will \icode{HALT} while attempting to read/write memory not aligned on a 16-bit (\icode{WORD}) boundary.
+Despite the raving description provided in the previous pages, the 68000 could be a peculiar CPU to program. Its most famous shortcoming involved memory alignment. While Intel's line of CISC allows random memory accesses (at the cost of a great performance penalty), Motorola's CPU will throw an \icode{address error} exception while attempting to read/write memory not aligned on a 16-bit (\icode{WORD}) boundary.
 
 This limitation is rooted all the way down to the CPU pins where there is no \icode{A0} line. Pins \icode{UDS} and \icode{LDS}indicate which of the high-byte or low-byte parts of a 16-bit \icode{WORD} to access.
 
@@ -411,7 +411,7 @@ For the audio, the m68k issues simple commands to the z80 via two 1 byte latches
 \section{Audio system}\index{Systems!Audio}
 The audio system runs in isolation from everything else. It has its own bus, its own RAM, its own ROM systems, and its own oscillators. Its only opening to the outside world are two latches to receive commands from the control system and two JAMMA pins to output sound.
 
-The component in charge is a surprisingly light-weight z80 running at 3.58 MHz.
+The component in charge is a surprisingly lightweight z80 running at 3.58 MHz.
 
 \subsection{z80 CPU}
 Released in July 1976 by Zilog, the z80 was intended as an Intel 8080 killer thanks to a compatible instruction set. It ended up becoming an icon of the 70s, sharing the scene with the equally mythical MOS 6502 well into the mid-80s. 
@@ -438,14 +438,14 @@ The z80 comes to life thanks to its \icode{CLK} (clock ), \icode{+V5} (power), a
 
 The bus lines are dedicated \icode{D0-D15} for addresses and \icode{A0-A7} for data. For control, \icode{RD} indicates read while \icode{WR} indicates a write operation. \icode{WAIT} is used to add waitstates. 
 
-Although it is capable of relinquishing control of the bus via \icode{BUSRQ} (Bus Request), \icode{BUSAK} (Bus Acknowledge), \icode{MREQ} (Memory Request), and \icode{IORQ} (IO Request), the z80 completely own its bus and never shares it. In fact, the \icode{BUSRQ} and \icode{BUSAK} pins are not even connected.  Because it is isolated via latches, the z80's bus never suffers contention.
+Although it is capable of relinquishing control of the bus via \icode{BUSRQ} (Bus Request), \icode{BUSAK} (Bus Acknowledge), \icode{MREQ} (Memory Request), and \icode{IORQ} (IO Request), the z80 completely owns its bus and never shares it. In fact, the \icode{BUSRQ} and \icode{BUSAK} pins are not even connected.  Because it is isolated via latches, the z80's bus never suffers contention.
 
 
 Other pins are \icode{NMI} Non Maskable Interrupt, \icode{RESET} Restart CPU, \icode{HALT} Waiting for interrupt, \icode{M1} Fetching next instruction. The \icode{INT} Interrupt line will be of crucial interest in the programming section. An interrupt controller is usually necessary but the simple needs of the sound system allows it to work without one. 
 \index{Interrupts!z80}
 
 \label{z80_pinRFSH}
-The \icode{RFSH} pin (ReFreSH signal) tics at regular intervals to trigger DRAM refreshes. Since the sound system uses only SRAM this pin was re-purposed in a creative way for the CPS-1.5 "Kabuki" (page \pageref{kabuki}).
+The \icode{RFSH} pin (ReFreSH signal) ticks at regular intervals to trigger DRAM refreshes. Since the sound system uses only SRAM this pin was re-purposed in a creative way for the CPS-1.5 "Kabuki" (page \pageref{kabuki}).
 
 
 \pagebreak
@@ -736,7 +736,7 @@ The RGB signals describe lines to be drawn but the CRT needs to know where to dr
 
 \begin{figure}[H]
 \sdraw{0.93}{desync}
-\caption*{A desynced CRT. Lines are correct but not located where they should}
+\caption*{A desynced CRT. Lines are correct but not located where they should be}
 \end{figure}
 
 
@@ -750,7 +750,7 @@ HSYNC signal tells the CRT that a line has been drawn and the gun's horizontal p
 \pagebreak
 \subsection{Fields}
 
-The process of drawing scanlines over the screen, also called "raster scan", is flawed as described. If the gun draws a line and upon HSYNC goes back to the left, it would be drawing the same upper left line over and over again. 
+The process of drawing scanlines over the screen, also called "raster scan", is incomplete as described. If the gun draws a line and upon HSYNC goes back to the left, it would be drawing the same upper left line over and over again. 
 
 It is barely noticeable but scanlines are not drawn straight. There is a slight downward slope. This way, when HSYNC is received and horizontal position is reset, the next line is drawn below the previous.
 
@@ -865,11 +865,11 @@ The CP-System overscan resolution of \icode{512x262} seems to indicate a very hi
 
 First, there is the problem of retracing vertically and horizontally. Cannon movement is not instantaneous, so while it moves horizontally or vertically, it would leave a visible diagonal of electrons across two scanlines (horizontal reset) or across the whole screen (vertical reset).
 
-The second problem is wobbling. Because a reset changes the cannon position abruptly (as opposed to the smooth progressioin during a scanline), it takes a little bit of time for the electron beam to stabilize again after it completes the reset.
+The second problem is wobbling. Because a reset changes the cannon position abruptly (as opposed to the smooth progression during a scanline), it takes a little bit of time for the electron beam to stabilize again after it completes the reset.
 
 Lastly, the video system needs breaks to read or write data without generating visible artifacts. This includes swapping buffers, updating palette colors, and retrieving the list of sprites/tilemaps to draw on the next scanline.
 
-The solution to these three problem is named blanking. By setting the color signals to zero, the cannon shoots no electrons. Blanking hides artifacts and create a window of time where the video system is inactive. There is a vertical blanking called VBLANK and an horizontal blanking called HBLANK.
+The solution to these three problems is named blanking. By setting the color signals to zero, the cannon shoots no electrons. Blanking hides artifacts and create a window of time where the video system is inactive. There is a vertical blanking called VBLANK and an horizontal blanking called HBLANK.
 
 
 \subsubsection{Capcom's second set of video signal choices}
@@ -1039,7 +1039,7 @@ A summary drawing exposes all timing and regions, as well as the significant par
 
 
 
-Keep in mind that HSYNC happens 262 times (blue vertical lines) but VSYNC occurs only once. The dashed horizontal red line in the previous drawing is only here to represent where the electron gun resets to the top of the screen.
+Keep in mind that HSYNC happens 262 times (green vertical lines) but VSYNC occurs only once. The dashed horizontal red line in the previous drawing is only here to represent where the electron gun resets to the top of the screen.
 
 The sheer amount of black in the drawings shows the extent of the overhead associated with beam wobbling management. But the time spent not drawing is not wasted. It is leveraged to perform background operations such as modifying palette colors. e.g: Sixteen lines are necessary for a palette page (32 palettes) "upload".
 
@@ -1156,7 +1156,7 @@ To build their rendering pipeline, Capcom did not rely on another company's prod
 
 
 \subsection{Pens and Inks}
-The elementary unit of work is a 4-bit value which is an index into a 16 colors palette. Everything, from backgrounds to sprites uses these 4-bit nibble indexes. A good analogy, and the terminology used in this book, is to picture the GFX manipulating "pens" (palette indexes). The color to appear on the screen is decided not by the pen but by the value at this index, which is called "ink".
+The elementary unit of work is a 4-bit value which is an index into a 16 colors palette. Everything, from backgrounds to sprites, uses these 4-bit nibble indexes. A good analogy, and the terminology used in this book, is to picture the GFX manipulating "pens" (palette indexes). The color to appear on the screen is decided not by the pen but by the value at this index, which is called "ink".
 
 This division makes the GFX system unaware of the color that will appear to players on the CRT since it only manipulates pens.
 
@@ -1255,7 +1255,7 @@ To render the stars, the GFXROM contains no tiles but instead bytecode dictating
 It is surprising nowadays to see so much silicon dedicated to a "niche" feature, but the extreme popularity of shoot
 em ups like R-Type, Gradius, or Darius at the time made a good case for it. Designing a system saving both considerable GFXROM space and artists' time was a good idea at the time. Ironically, the platform ended up receiving no space shooter! 
 
-That did not prevent the feature from being used, though. Long after STARfields came out of fashion, the system was re-purposed.
+That did not prevent the feature from being used, though. Long after STARfields went out of fashion, the system was re-purposed.
 
 
 
@@ -1395,7 +1395,7 @@ Ultimately, the balance of these two features was reversed when rowscroll was us
 
 \subsubsection{Pushing the limits}
 
-Besides priority mask, tiles can be flipped horizontally and/or vertically but there is no scaling or rotation. Moreover, the CPU has no access to the VRAM which forbids pixel "plotting". That did not prevent seemingly impossible effects from beinf achieved.
+Besides priority mask, tiles can be flipped horizontally and/or vertically but there is no scaling or rotation. Moreover, the CPU has no access to the VRAM which forbids pixel "plotting". That did not prevent seemingly impossible effects from being achieved.
 
 
 
@@ -1422,7 +1422,7 @@ To add rainfall, developers leveraged temporal blending on the same layer as the
 
 The introduction sequence of the shoot'em up Carrier Air Wing (page \pageref{caw_color} and \pageref{caw_rgb}) is even more impressive. As a F-14 Tomcat takes off from its carrier, the jet leaves in its trail an exhaust that expands vertically one pixel line at a time. The gaze then disperses with a fizzlefade effect. 
 
-It seems like pixels are plotted into a framebuffer but both effects are rendered via the OBJ layer (\fcolorbox{black}{black}{\vphantom{W}\hphantom{H}}). Exhaust expansion if done with 16 pre-rendered tileS (each covering more vertical lines). The fizzlefade is achieved with titles featuring an increasing density of transparent pens. The fizzle repeating pattern is visible on the fourth color coded screenshot.
+It seems like pixels are plotted into a framebuffer but both effects are rendered via the OBJ layer (\fcolorbox{black}{black}{\vphantom{W}\hphantom{H}}). Exhaust expansion is done with 16 pre-rendered tiles (each covering more vertical lines). The fizzlefade is achieved with titles featuring an increasing density of transparent pens. The fizzle repeating pattern is visible on the fourth color coded screenshot.
 
 
  
@@ -1500,7 +1500,7 @@ A straight forward way to make a GFX more powerful is to simply give it more tim
 
 By using two line buffers alternately, the GFX pipeline is made deeper which increases its latency but also frees itself from rendering only during HBLANK. While a line buffer is fed to the video, another one is rendered. This allows drawing during one full scanline (64$\mu$s) and a GFX four times more capable than one using a single line buffer. 
 
-This choice, made by SNK for its Neo-Geo, allowed gorgeous titles such as "Metal Slug" to be build entirely with sprites without using tilemaps. 
+This choice, made by SNK for its Neo-Geo, allowed gorgeous titles such as "Metal Slug" to be built entirely with sprites without using tilemaps. 
 
 This technique is so powerful that the entire Neo-Geo rendering pipeline revolves around its double line buffer system. It needs no tilemap system.
 
@@ -1653,7 +1653,7 @@ Games were tested to ensure the OBJ budget was not exceed but Final Fight last l
 \end{itemize}
 
 This scene has 258 tiles on the OBJ layer. Final Fight engine is smart enough to not render partial sprites. Since
-Haggar, the last sprite on the list, pushes the total 2 tiles past the maximum, all it tiles are dropped.
+Haggar, the last sprite on the list, pushes the total 2 tiles past the maximum, all its tiles are dropped.
 
 \vfill
 \img{ff_OBJ_overload.png}
@@ -2060,7 +2060,7 @@ To this effect, twenty-five versions the CPS-B exist\cite{mame_cps1_video}, some
 \href{}{Carrier Air Wing} & & \texttt{CPS-B-16}  & 1990 \\ 
 \href{}{Nemo} & & \texttt{CPS-B-15} &  1990 \\ 
   \toprule    
-\href{}{Street Fighter II: The World Warrior }&  \texttt{Original}& \texttt{CPS-B-1}1 & 1991 \\  %sf2
+\href{}{Street Fighter II: The World Warrior }&  \texttt{Original}& \texttt{CPS-B-11} & 1991 \\  %sf2
 \href{}{Street Fighter II: The World Warrior } & \texttt{910204}& \texttt{CPS-B-17} & 1991 \\  %sf2ea
 \href{}{Street Fighter II: The World Warrior } & \texttt{910318}& \texttt{CPS-B-05} & 1991 \\  %sf2ed
 \href{}{Street Fighter II: The World Warrior } & \texttt{910228}& \texttt{CPS-B-18} & 1991 \\  %sf2ee
@@ -2158,7 +2158,7 @@ Up to 1991, the behavior of a CPS-B was hard-coded in its silicon at the factory
 
 It was not only expensive to have to revise the hardware circuits for each game, it was also a logistic difficulty to provision enough chips for a success and not be stuck with inventory on an unappreciated game. To solve this issue, Capcom revisted the CPS-B chip one last time and made it configurable via software.
 
-The whole behavior is encoded in a small internal 18 byte area using not ROM but RAM. To keep these bytes alive, the CPS-B v21 must be supplied with current at all time\cite{petitSecurity}.
+The whole behavior is encoded in a small internal 18 byte area using not ROM but RAM. To keep these bytes alive, the CPS-B v21 must be supplied with current at all times\cite{petitSecurity}.
 
 The configuration RAM was designed to survive when the cabinet was turned off thanks to a battery located  on the soldering side of Board C and connected to the CPS-B. The chip was even designed to survive having no battery for a few minutes to allow battery replacement.
 
